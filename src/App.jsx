@@ -1,24 +1,38 @@
-import React from "react";
-import Home from "./pages/home";
-import Newpost from "./pages/Newpost";
-import Register from "./pages/register";
-import Header from "./components/Header";
-import Login from "./pages/login";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
-const App = () => {
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
+import Header from "./component/Header";
+
+function App() {
   return (
-    <div className="min-h-dvh bg-green-400">
+    <div className="min-h-screen bg-gray-50 font-noto">
       <Header />
-      <main className=""></main>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/newpost" element={<Newpost />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <main className="max-w-4xl mx-auto">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* 404 Route */}
+          <Route
+            path="*"
+            element={
+              <div className="text-center">
+                <h1 className="text-3xl font-bold">404 Not Found</h1>
+                <p className="text-gray-500">
+                  The page you are looking for does not exist.
+                </p>
+              </div>
+            }
+          />
+        </Routes>
+      </main>
     </div>
   );
-};
+}
 
 export default App;

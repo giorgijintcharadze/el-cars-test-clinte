@@ -1,22 +1,21 @@
-import { data } from "react-router-dom";
-import z, { email } from "zod";
+import { z } from "zod";
 
 export const registerSchema = z
   .object({
     username: z
       .string()
-      .min(3, "Password must be at last 3 characters")
-      .max(20, "user can not exceed 20 characters"),
-    email: z.email("invalid email"),
-    password: z.string().min(6, "Password must be at last 6 characters"),
-    confirmpassword: z.string(),
+      .min(3, "Username must be at least 3 characters")
+      .max(20, "Username cannot exceed 20 characters"),
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string(),
   })
-  .refine((data) => data.password === data.confirmpassword, {
-    message: "Password do not match",
-    path: ["confirmpassword"],
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 export const loginSchema = z.object({
-  email: z.email("invalid email"),
-  password: z.string().min(6, "Password must be at last 6 characters"),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });

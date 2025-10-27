@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300;
+  }
+}
+
+@font-face {
+  font-family: "noto-sans";
+  src: url("/fonts/noto.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@layer utilities {
+  .font-noto {
+    font-family: "noto-sans", sans-serif;
+  }
+}
